@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "weekmind": {
+      "type": "http",
+      "url": "${WEEKMIND_URL:-https://weekmind.app}/mcp"
+    }
+  }
+}
