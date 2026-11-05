@@ -9,6 +9,7 @@
   "plugins": [
     {
       "name": "weekmind",
+      "displayName": "Weekmind",
       "source": "./plugins/weekmind",
       "description": "Plan your week with Weekmind from Claude: connects the Weekmind MCP server and teaches Claude how to read, plan and replan your tasks and routines.",
       "version": "1.0.0",
