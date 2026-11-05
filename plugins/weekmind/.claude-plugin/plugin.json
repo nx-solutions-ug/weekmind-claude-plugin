@@ -8,5 +8,6 @@
   },
   "homepage": "https://weekmind.app",
   "keywords": ["planning", "calendar", "tasks", "scheduling", "productivity"],
-  "privacyPolicyUrl": "https://weekmind.app/en/privacy"
+  "privacyPolicyUrl": "https://weekmind.app/en/privacy",
+  "license": "MIT"
 }
