@@ -13,6 +13,6 @@ Claude Code plugin marketplace for [Weekmind](https://weekmind.app), the AI plan
 
 Then run `/mcp`, choose `weekmind` and log in. Details: [plugins/weekmind/README.md](plugins/weekmind/README.md).
 
-Weekmind is a product of NX Solutions UG. Privacy: <https://weekmind.app/en/privacy>
+Weekmind is a product of NX Solutions UG (haftungsbeschränkt). Privacy: <https://weekmind.app/en/privacy>
 
 License: MIT
