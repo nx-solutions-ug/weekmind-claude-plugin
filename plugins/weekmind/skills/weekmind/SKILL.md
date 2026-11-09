@@ -19,7 +19,14 @@ Never guess ids or recall them from earlier turns when they could be stale; bloc
 
 ## Core workflows
 
-**Add a task.** `create_task` with title and a realistic duration. If the user gave no estimate, estimate one and say so in your answer. Add a deadline when there is one. Do not set block-size limits unless asked. Then `replan` and `get_schedule` to show where it landed.
+**Add a task.** Prefer the user's real task tool over a Weekmind-only task, so the task lives where they already track work:
+
+1. `list_sources` and look at the `integrations` with status `connected` (Slack only saves messages, so it does not count).
+2. If one fits the task *and* you have a tool that can create items there (a Jira/Atlassian, GitHub, Todoist or Google Tasks MCP server, or the `gh` CLI), create the item there. Match the system to the task: a work ticket goes to Jira, only in one of the listed `projectKeys`; code work to a GitHub issue in the relevant repo; personal or general to-dos to Todoist or Google Tasks. If several fit equally, ask once. Jira and GitHub are shared with colleagues: confirm the project or repo first unless the user named it.
+3. After creating it there, Weekmind imports the item with `autoSchedule: false` and no estimate. Find it in `list_tasks` (by source and title) and `update_task` it with `autoSchedule: true`, a duration and the deadline. If it is not there yet (sync not done, or Jira's `importsFilter` excludes it), tell the user it appears after the next sync; do **not** also `create_task`, that makes a duplicate.
+4. Otherwise (no connected integration fits, you have no tool for it, or the user wants it only in Weekmind) use `create_task`.
+
+Either way: a realistic duration; if the user gave no estimate, estimate one and say so in your answer. Add a deadline when there is one. Do not set block-size limits unless asked. Then `replan` and `get_schedule` to show where it landed.
 
 **"Does X still fit?"** Use `simulate` (a what-if on the real planner, saves nothing) before changing anything. Report the outcome and what moves; only then offer to make the change for real.
 

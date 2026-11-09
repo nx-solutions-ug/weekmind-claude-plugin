@@ -10,7 +10,7 @@ Plan actions (only for agents allowed to apply): `block_action`, `decide_proposa
 | ----------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | `get_schedule`    | Read days: events (fixed), planned blocks with reason codes, working hours, free minutes, what the last run could not fit     |
 | `list_tasks`      | Tasks with ids, duration, priority, deadline, source, `autoSchedule`, and how much is planned in the next two weeks           |
-| `create_task`     | Add a task for the planner to schedule                                                                                        |
+| `create_task`     | Add a Weekmind-only task; the fallback when no connected integration fits (see "Add a task" in the skill)                     |
 | `update_task`     | Change priority, duration, deadline (null removes), earliest start, block sizes, notes, `autoSchedule`, `hoursType`, `status` |
 | `delete_task`     | Permanent delete; prefer `status` done/archived                                                                               |
 | `list_habits`     | Routines (recurring habits, protected focus time) with weekdays and windows                                                   |
@@ -24,11 +24,11 @@ Plan actions (only for agents allowed to apply): `block_action`, `decide_proposa
 | `get_proposal`    | The open proposal and its block changes                                                                                       |
 | `decide_proposal` | Accept or reject the open proposal                                                                                            |
 | `block_action`    | start, complete, snooze, extend, skip, move, unschedule, missed on a planned block                                            |
-| `list_sources`    | Connected calendars and accounts                                                                                              |
+| `list_sources`    | Connected calendars, accounts and task integrations (Jira project keys, import filter, status)                                |
 | `search_events`   | Search events across all connected calendars                                                                                  |
 | `get_event`       | Details of one event                                                                                                          |
 
-Tasks imported from Jira, GitHub, Todoist or Google Tasks wait under "Nicht eingeplant" until the user picks them (`autoSchedule`). Reading Jira and GitHub items themselves is not available over MCP; that stays in the Weekmind app.
+Tasks imported from Jira, GitHub, Todoist or Google Tasks wait under "Nicht eingeplant" with `autoSchedule: false` until picked; an agent that created the item for the user sets `autoSchedule: true` and a duration with `update_task`. Jira only imports issues from the listed project keys that match the integration's import filter. Weekmind cannot create items in those systems; use the integration's own tools for that. Reading Jira and GitHub items themselves is not available over MCP; that stays in the Weekmind app.
 
 Task and routine `hoursType` is `work` or `private`: work blocks go to the work calendar, private ones to the private calendar, and private tasks use the user's personal time.
 
