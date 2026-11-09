@@ -1,7 +1,7 @@
 {
   "name": "weekmind",
   "displayName": "Weekmind",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Plan your week with Weekmind from Claude: connects the Weekmind MCP server and teaches Claude how to read, plan and replan your tasks and routines.",
   "author": {
     "name": "NX Solutions UG",
