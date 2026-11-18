@@ -17,7 +17,7 @@ Plan actions (only for agents allowed to apply): `block_action`, `decide_proposa
 | `create_habit`    | Place a routine once per given weekday inside a window; marked AI-created                                                     |
 | `update_habit`    | Change a routine; `active: false` pauses it                                                                                   |
 | `delete_habit`    | Delete a routine                                                                                                              |
-| `get_settings`    | Working hours, personal time, max daily load, buffer around meetings, focus time, one-piece planning, block-length cap        |
+| `get_settings`    | Working hours, personal time, max daily load, buffer around meetings, focus time, one-piece planning, task distribution, overtime budget, block-length cap, proposal threshold |
 | `update_settings` | Change those; not for one-off absences                                                                                        |
 | `replan`          | Run the planner now; returns what could not be fitted                                                                         |
 | `simulate`        | What-if on the real planner, saves nothing                                                                                    |
@@ -28,12 +28,12 @@ Plan actions (only for agents allowed to apply): `block_action`, `decide_proposa
 | `search_events`   | Search events across all connected calendars                                                                                  |
 | `get_event`       | Details of one event                                                                                                          |
 
-Tasks imported from Jira, GitHub, Todoist or Google Tasks wait under "Nicht eingeplant" with `autoSchedule: false` until picked; an agent that created the item for the user sets `autoSchedule: true` and a duration with `update_task`. Jira only imports issues from the listed project keys that match the integration's import filter. Weekmind cannot create items in those systems; use the integration's own tools for that. Reading Jira and GitHub items themselves is not available over MCP; that stays in the Weekmind app.
+Tasks imported from Jira, GitHub, Todoist or Google Tasks wait under "Nicht eingeplant" (English: "Not scheduled") with `autoSchedule: false` until picked; an agent that created the item for the user sets `autoSchedule: true` and a duration with `update_task`. Jira only imports issues from the listed project keys that match the integration's import filter. Weekmind cannot create items in those systems; use the integration's own tools for that. Reading Jira and GitHub items themselves is not available over MCP; that stays in the Weekmind app.
 
 `origin` is `ai` for tasks and routines created through this connection (or by Weekmind's in-app assistant) and `manual` for the ones the user made. Weekmind sets it on the server; it is not an input of any tool and stays when a task is edited. The app shows `ai` ones under an "AI-created" tab on Tasks and with a badge on routines.
 
-Task and routine `hoursType` is `work` or `private`: work blocks go to the work calendar, private ones to the private calendar, and private tasks use the user's personal time.
+A task's `hoursType` is `work` (the default) or `personal`: work tasks are planned inside the user's working hours, personal ones outside them, in the user's personal time (evenings, weekends). Routines have no `hoursType`.
 
 ## REST fallback
 
-For scripts and agents without OAuth, a personal token (Weekmind → Einstellungen → Schnittstellen) works as `Authorization: Bearer pln_…` against `<base>/api/v1`. The OpenAPI description is at `<base>/api/v1/openapi.json`.
+For scripts and agents without OAuth, a personal token (Weekmind → Einstellungen → Schnittstellen, English: Settings → Interfaces) works as `Authorization: Bearer pln_…` against `<base>/api/v1`. The OpenAPI description is at `<base>/api/v1/openapi.json`.

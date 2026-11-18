@@ -62,7 +62,7 @@ Unless the user allowed this agent to apply changes, the effect of your changes 
 | `extend`     | `minutes` more (default 15, max 240); the task's estimate grows too              |
 | `skip`       | Routines only: no block on that day                                              |
 | `move`       | New `start`; the block keeps its length and becomes fixed there                  |
-| `unschedule` | Tasks only: all unstarted blocks go; the task waits under "Nicht eingeplant"     |
+| `unschedule` | Tasks only: all unstarted blocks go; the task waits under "Nicht eingeplant" ("Not scheduled") |
 | `missed`     | A finished block that was never started didn't happen; the task is planned again |
 
 Each action replans the rest right away. `snooze`, `skip`, `missed` and `unschedule` remove the block, so repeating one answers "not found".
