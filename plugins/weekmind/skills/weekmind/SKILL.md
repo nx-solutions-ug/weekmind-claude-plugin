@@ -26,6 +26,8 @@ Never guess ids or recall them from earlier turns when they could be stale; bloc
 3. After creating it there, Weekmind imports the item with `autoSchedule: false` and no estimate. Find it in `list_tasks` (by source and title) and `update_task` it with `autoSchedule: true`, a duration and the deadline. If it is not there yet (sync not done, or Jira's `importsFilter` excludes it), tell the user it appears after the next sync; do **not** also `create_task`, that makes a duplicate.
 4. Otherwise (no connected integration fits, you have no tool for it, or the user wants it only in Weekmind) use `create_task`.
 
+Tasks and routines you create in Weekmind with `create_task` / `create_habit` are marked **AI-created** (`origin: "ai"`) in the app: they appear under their own "KI-erstellt" / "AI-created" tab and badge instead of "Own". Weekmind sets this itself from the connection, so there is nothing to pass and `update_task` does not change it. `list_tasks` and `list_habits` return `origin` (`ai` or `manual`), which tells your own additions from what the user entered. Say what you created so the user can review it; items you create in Jira, GitHub or another system are not marked by Weekmind.
+
 Either way: a realistic duration; if the user gave no estimate, estimate one and say so in your answer. Add a deadline when there is one. Do not set block-size limits unless asked. Then `replan` and `get_schedule` to show where it landed.
 
 **"Does X still fit?"** Use `simulate` (a what-if on the real planner, saves nothing) before changing anything. Report the outcome and what moves; only then offer to make the change for real.

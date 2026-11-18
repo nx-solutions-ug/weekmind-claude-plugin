@@ -9,12 +9,12 @@ Plan actions (only for agents allowed to apply): `block_action`, `decide_proposa
 | Tool              | Use it to                                                                                                                     |
 | ----------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | `get_schedule`    | Read days: events (fixed), planned blocks with reason codes, working hours, free minutes, what the last run could not fit     |
-| `list_tasks`      | Tasks with ids, duration, priority, deadline, source, `autoSchedule`, and how much is planned in the next two weeks           |
-| `create_task`     | Add a Weekmind-only task; the fallback when no connected integration fits (see "Add a task" in the skill)                     |
+| `list_tasks`      | Tasks with ids, duration, priority, deadline, source, `origin`, `autoSchedule`, and how much is planned in the next two weeks |
+| `create_task`     | Add a Weekmind-only task, marked AI-created; the fallback when no connected integration fits (see "Add a task" in the skill)  |
 | `update_task`     | Change priority, duration, deadline (null removes), earliest start, block sizes, notes, `autoSchedule`, `hoursType`, `status` |
 | `delete_task`     | Permanent delete; prefer `status` done/archived                                                                               |
-| `list_habits`     | Routines (recurring habits, protected focus time) with weekdays and windows                                                   |
-| `create_habit`    | Place a routine once per given weekday inside a window                                                                        |
+| `list_habits`     | Routines (recurring habits, protected focus time) with `origin`, weekdays and windows                                         |
+| `create_habit`    | Place a routine once per given weekday inside a window; marked AI-created                                                     |
 | `update_habit`    | Change a routine; `active: false` pauses it                                                                                   |
 | `delete_habit`    | Delete a routine                                                                                                              |
 | `get_settings`    | Working hours, personal time, max daily load, buffer around meetings, focus time, one-piece planning, block-length cap        |
@@ -29,6 +29,8 @@ Plan actions (only for agents allowed to apply): `block_action`, `decide_proposa
 | `get_event`       | Details of one event                                                                                                          |
 
 Tasks imported from Jira, GitHub, Todoist or Google Tasks wait under "Nicht eingeplant" with `autoSchedule: false` until picked; an agent that created the item for the user sets `autoSchedule: true` and a duration with `update_task`. Jira only imports issues from the listed project keys that match the integration's import filter. Weekmind cannot create items in those systems; use the integration's own tools for that. Reading Jira and GitHub items themselves is not available over MCP; that stays in the Weekmind app.
+
+`origin` is `ai` for tasks and routines created through this connection (or by Weekmind's in-app assistant) and `manual` for the ones the user made. Weekmind sets it on the server; it is not an input of any tool and stays when a task is edited. The app shows `ai` ones under an "AI-created" tab on Tasks and with a badge on routines.
 
 Task and routine `hoursType` is `work` or `private`: work blocks go to the work calendar, private ones to the private calendar, and private tasks use the user's personal time.
 
