@@ -16,6 +16,6 @@ Then run `/mcp`, choose `weekmind` and log in. Agent access needs a Weekmind Pro
 
 To use another Weekmind address (staging, local) set `WEEKMIND_URL`, e.g. `WEEKMIND_URL=http://localhost:3000`, before starting Claude Code.
 
-Every change Claude makes reaches your plan as a proposal you accept in Weekmind, unless you allow the agent to apply changes under Einstellungen → Schnittstellen.
+Every change Claude makes reaches your plan as a proposal you accept in Weekmind, unless you allow the agent to apply changes under Einstellungen → Schnittstellen (English: Settings → Interfaces, "Apply directly").
 
 Privacy: <https://weekmind.app/en/privacy>

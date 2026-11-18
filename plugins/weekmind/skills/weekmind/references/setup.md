@@ -2,13 +2,13 @@
 
 ## Connect
 
-The plugin registers the `weekmind` MCP server at `https://weekmind.app/mcp`. The first time a tool is used, Claude opens the browser; the user logs in to Weekmind and confirms. The agent then shows up under "Verbundene Agenten" in Weekmind and can be disconnected there.
+The plugin registers the `weekmind` MCP server at `https://weekmind.app/mcp`. The first time a tool is used, Claude opens the browser; the user logs in to Weekmind and confirms. The agent then shows up under "Verbundene Agenten und Apps" ("Connected agents and apps") in Weekmind and can be disconnected there.
 
 Other Weekmind address (staging, local): set `WEEKMIND_URL` before starting Claude Code, e.g. `WEEKMIND_URL=http://localhost:3000` (no trailing `/mcp`).
 
 ## Letting the agent apply changes
 
-By default every change an agent makes reaches the plan as a **proposal** the user accepts in the app's week view. To let this agent apply changes directly (needed for `block_action` and `decide_proposal`), the user ticks "Direkt übernehmen" for the agent under Einstellungen → Schnittstellen.
+By default every change an agent makes reaches the plan as a **proposal** the user accepts in the app's week view. To let this agent apply changes directly (needed for `block_action` and `decide_proposal`), the user ticks "Direkt übernehmen" ("Apply directly") for the agent under Einstellungen → Schnittstellen (English: Settings → Interfaces).
 
 ## Problems
 
